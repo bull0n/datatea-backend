@@ -25,7 +25,7 @@ SECRET_KEY = '4$ss$d&r7@-^-#=jat2^0t&$(+4i%%h2t16ozya)+*55fjz4ok'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
+    'teas',
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'datatea_backend.schema.schema'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
