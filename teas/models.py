@@ -9,14 +9,14 @@ class Tea(models.Model):
         POWDER = 'powdered', 'powdered'
 
     name = models.CharField(max_length=100)
-    year_in_school = models.CharField(max_length=20, choices=Form.choices)
-    would_buy_again = models.BooleanField()
+    form = models.CharField(max_length=20, choices=Form.choices, default=Form.LOOSE)
+    would_buy_again = models.BooleanField(null=True, blank=True)
     price = models.FloatField(null=True, blank=True)
     picking_season = models.DateField(null=True, blank=True)
     origin = models.CharField(max_length=100, blank=True)
     vendor = models.CharField(max_length=50, blank=True)
     url_bought = models.CharField(max_length=200, blank=True)
-    vendor_description = models.TextField()
+    vendor_description = models.TextField(blank=True)
     description = models.TextField()
 
 
