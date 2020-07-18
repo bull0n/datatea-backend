@@ -5,6 +5,7 @@ from teas.models import Tea
 
 class CreateTea(graphene.Mutation):
     class Arguments:
+        id = graphene.Int()
         name = graphene.String(required=True)
         form = graphene.Argument(TeaFormEnum, required=True)
         description = graphene.String(required=True)
