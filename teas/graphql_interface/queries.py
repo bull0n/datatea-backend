@@ -4,14 +4,14 @@ from .types import TeaType
 import graphene
 
 class TeasQuery(object):
-    all_teas = graphene.List(TeaType)
+    teas = graphene.List(TeaType)
 
     tea = graphene.Field(TeaType,
                         id=graphene.Int(),
                         name=graphene.String())
 
 
-    def resolve_all_teas(self, info, **kwargs):
+    def resolve_teas(self, info, **kwargs):
         return Tea.objects.all()
 
     def resolve_category(self, info, **kwargs):

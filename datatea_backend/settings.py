@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +47,7 @@ GRAPHENE = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,6 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8080',
+    'http://localhost:8080',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
