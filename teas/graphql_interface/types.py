@@ -8,4 +8,3 @@ class TeaType(DjangoObjectType):
         model = Tea
 
 
-TeaFormEnum = graphene.Enum.from_enum(Tea.Form)

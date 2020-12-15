@@ -1,14 +1,13 @@
 import graphene
 
-from .types import TeaType, TeaFormEnum
+from .types import TeaType
 from teas.models import Tea
 
 class CreateTea(graphene.Mutation):
     class Arguments:
         id = graphene.Int()
         name = graphene.String(required=True)
-        form = graphene.Argument(TeaFormEnum, required=True)
-        description = graphene.String(required=True)
+        comment = graphene.String()
         would_buy_again = graphene.Boolean()
         price = graphene.Float()
         picking_season = graphene.Date()
