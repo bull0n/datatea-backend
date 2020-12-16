@@ -14,7 +14,7 @@ class TeasQuery(object):
     def resolve_teas(self, info, **kwargs):
         return Tea.objects.all()
 
-    def resolve_category(self, info, **kwargs):
+    def resolve_tea(self, info, **kwargs):
           id = kwargs.get('id')
           name = kwargs.get('name')
 

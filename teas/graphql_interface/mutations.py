@@ -19,7 +19,6 @@ class CreateTea(graphene.Mutation):
     tea = graphene.Field(TeaType)
 
     def mutate(self, info, **kwargs):
-        print(kwargs)
         tea = Tea.objects.create(**kwargs)
 
         return CreateTea(tea=tea)
