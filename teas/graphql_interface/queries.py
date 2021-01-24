@@ -13,10 +13,6 @@ class TeasQuery(object):
 
 
     def resolve_teas(self, info, **kwargs):
-        user = info.context.user
-        if user.is_anonymous:
-            raise GraphQLError('Authentication credentials were not provided') 
-
         return Tea.objects.all()
 
     def resolve_tea(self, info, **kwargs):
