@@ -2,6 +2,8 @@ import graphene
 
 from .types import TeaType
 from teas.models import Tea
+from graphql_jwt.decorators import login_required
+from users.decorators import auth_required
 
 class CreateTea(graphene.Mutation):
     class Arguments:
@@ -18,6 +20,7 @@ class CreateTea(graphene.Mutation):
 
     tea = graphene.Field(TeaType)
 
+    @auth_required
     def mutate(self, info, **kwargs):
         tea = Tea.objects.create(**kwargs)
 
