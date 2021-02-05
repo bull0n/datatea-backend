@@ -3,6 +3,7 @@ from teas.models import Tea
 from .types import TeaType
 import graphene
 from graphql import GraphQLError
+from users.decorators import auth_required
 
 class TeasQuery(object):
     teas = graphene.List(TeaType)
@@ -11,11 +12,12 @@ class TeasQuery(object):
                         id=graphene.Int(),
                         name=graphene.String())
 
-
+    @auth_required
     def resolve_teas(self, info, **kwargs):
         return Tea.objects.all()
 
     def resolve_tea(self, info, **kwargs):
+
         id = kwargs.get('id')
         name = kwargs.get('name')
 
