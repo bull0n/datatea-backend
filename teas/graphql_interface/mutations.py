@@ -2,7 +2,6 @@ import graphene
 
 from .types import TeaType
 from teas.models import Tea
-from graphql_jwt.decorators import login_required
 from users.decorators import auth_required
 
 class CreateTea(graphene.Mutation):

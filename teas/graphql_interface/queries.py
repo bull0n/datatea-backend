@@ -14,6 +14,7 @@ class TeasQuery(object):
 
     @auth_required
     def resolve_teas(self, info, **kwargs):
+        print(Tea.objects.all())
         return Tea.objects.all()
 
     def resolve_tea(self, info, **kwargs):
