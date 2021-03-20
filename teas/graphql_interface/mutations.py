@@ -4,10 +4,14 @@ from .types import TeaType
 from teas.models import Tea
 from users.decorators import auth_required
 
+
+TeaCategoryEnum = graphene.Enum.from_enum(Tea.Category)
+
 class CreateTea(graphene.Mutation):
     class Arguments:
         id = graphene.Int()
         name = graphene.String(required=True)
+        category = graphene.Argument(TeaCategoryEnum, required=True)
         comment = graphene.String()
         would_buy_again = graphene.Boolean()
         price = graphene.Float()
