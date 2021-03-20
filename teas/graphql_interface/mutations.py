@@ -21,6 +21,6 @@ class CreateTea(graphene.Mutation):
 
     @auth_required
     def mutate(self, info, **kwargs):
-        tea = Tea.objects.create(**kwargs)
+        tea = Tea.objects.create(**kwargs, user=info.context.user)
 
         return CreateTea(tea=tea)
