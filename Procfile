@@ -1,0 +1,1 @@
+web: gunicorn datatea_backend.wsgi
