@@ -14,7 +14,9 @@ class TeasQuery(object):
 
     @auth_required
     def resolve_teas(self, info, **kwargs):
-        return Tea.objects.filter(user=info.context.user)
+        teas = Tea.objects.filter(user=info.context.user)
+
+        return teas
 
     def resolve_tea(self, info, **kwargs):
 
