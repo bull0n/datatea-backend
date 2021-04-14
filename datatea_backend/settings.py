@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -98,9 +99,10 @@ DATABASES = {
         'USER': os.environ.get('DB_USERNAME', ''),
         'PASSWORD': os.environ.get('DB_PASSWORD', ''),
         'HOST': os.environ.get('DB_HOST', ''),
-        'PORT': int(os.environ.get('DB_PORT', '')),
-    }
+        'PORT': int(os.environ.get('DB_PORT', '4532')),
+    }, 
 }
+
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
