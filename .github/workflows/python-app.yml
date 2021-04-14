@@ -34,7 +34,7 @@ jobs:
     - name: Test run test
       run: |
         python manage.py migrate
-        python manage.py test --settings=datatea_backend.settings_test
+        python manage.py test
     - uses: akhileshns/heroku-deploy@v3.12.12 
       name: Deployment
       with:
