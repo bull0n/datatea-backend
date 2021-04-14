@@ -1,17 +1,15 @@
 import graphene
+from django.core.exceptions import FieldDoesNotExist
 
-from .types import TeaType
+from .types import TeaType, CategoryEnum, StatusEnum
 from teas.models import Tea
 from users.decorators import auth_required
-
-
-TeaCategoryEnum = graphene.Enum.from_enum(Tea.Category)
 
 class CreateTea(graphene.Mutation):
     class Arguments:
         id = graphene.Int()
         name = graphene.String(required=True)
-        category = graphene.Argument(TeaCategoryEnum, required=True)
+        category = graphene.Argument(CategoryEnum, required=True)
         comment = graphene.String()
         would_buy_again = graphene.Boolean()
         price = graphene.Float()
@@ -25,6 +23,22 @@ class CreateTea(graphene.Mutation):
 
     @auth_required
     def mutate(self, info, **kwargs):
-        tea = Tea.objects.create(**kwargs, user=info.context.user)
+        tea = Tea.objects.update_or_create(**kwargs, user=info.context.user)
 
         return CreateTea(tea=tea)
+
+class UpdateTeaStatus(graphene.Mutation):
+    class Arguments:
+        id = graphene.Int(required=True)
+        status = graphene.Argument(StatusEnum, required=True)
+
+    ok = graphene.Boolean()
+
+    @auth_required
+    def mutate(self, info, id, status):
+        affected_rows = Tea.objects.filter(pk=id).update(status=status)
+
+        if affected_rows == 0:
+            raise FieldDoesNotExist(f'Tea with id={id} does not exist')
+
+        return UpdateTeaStatus(ok=affected_rows > 0)
